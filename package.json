@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "cy:mocha": "cypress run --reporter cypress-mochawesome-reporter"
+    "cy:run": "cypress run --reporter cypress-mochawesome-reporter",
+    "cy:clean-reports": "if exist cypress\\reports rmdir /s/q cypress\\reports",
+    "cy:clean-snapshots": "if exist cypress\\screenshots rmdir /s/q cypress\\screenshots",
+    "cy:clean-videos": "if exist cypress\\videos rmdir /s/q cypress\\videos",
+    "cy:pretest": "npm run cy:clean-reports && npm run cy:clean-snapshots && npm run cy:clean-videos",
+    "cy:scripts": "npm run cy:pretest && npm run cy:run"
   },
   "author": "Ankit Srivastava",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^9.5.1",
-    "cypress-mochawesome-reporter": "^2.3.0",
+    "cypress-mochawesome-reporter": "^2.4.0",
     "randomstring": "^1.2.2"
   }
 }
