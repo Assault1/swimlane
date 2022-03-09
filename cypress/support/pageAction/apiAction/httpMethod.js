@@ -1,16 +1,16 @@
-import utilfunction from "../../apiResuable/utilfunction";
+import utilfunction from "../../../support/apiResuable/utilfunction";
 import UserTokenGenerateAPI from "./userToken";
 
-const util = new utilfunction ();
+const util = new utilfunction();
 const recordURL = Cypress.env("APIURL") + Cypress.env("createRecordURI");
 const applicationId = Cypress.env("applicationId");
 
 const values = {
   aHxOeHmCTIGd_hg1b: "TestLastName",
   aHdR_gHQmRT8ItVTL: "TestFirstName",
-  aFjm80LnbJf780V6p: "TestCity"
+  aFjm80LnbJf780V6p: "TestCity",
 };
-const api_Options = {};
+const api_Options = {}; 
 
 class httpMethod {
   static recordId;
@@ -25,12 +25,10 @@ class httpMethod {
         Authorization: "Bearer " + UserTokenGenerateAPI.token,
       });
 
-      util
-      .request_Options(api_Options, responseCode)
-      .then((response) => {
-        this.recordId = response.body.id;
-        this.recordName = response.body.name;
-      });
+    util.request_Options(api_Options, responseCode).then((response) => {
+      this.recordId = response.body.id;
+      this.recordName = response.body.name;
+    });
   }
 
   /**Get the above record details via GET Call */
@@ -40,12 +38,10 @@ class httpMethod {
     api_Options.headers = {
       Authorization: "Bearer " + UserTokenGenerateAPI.token,
     };
-    util
-      .request_Options(api_Options, responseCode)
-      .then((response) => {
-        if (response.body?.name)
-          expect(response.body.name).to.eq(this.recordName);
-      });
+    util.request_Options(api_Options, responseCode).then((response) => {
+      if (response.body?.name)
+        expect(response.body.name).to.eq(this.recordName);
+    });
   }
 
   /**Delete the  record details via Delete Call */

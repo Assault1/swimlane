@@ -1,27 +1,32 @@
-import EmployeeSubmissionElements from "../../PageObjects/addEmployee";
+import EmployeeSubmissionElements from "../../../support/pageObjects/addEmployee";
 /// <reference types="cypress" />
 const employee = new EmployeeSubmissionElements();
 var randomstring = require("randomstring");
 
-
 class employeeActions {
-   click_NewEmployeeSubmission() {
+  click_NewEmployeeSubmission() {
     employee.getNewEmployeSubmission().click();
   }
 
-   addEmployeeRequiredField() {
-      employee.getFirstName_TextField().type(randomstring.generate({
+  addEmployeeRequiredField() {
+    employee.getFirstName_TextField().type(
+      randomstring.generate({
         length: 7,
-        charset: 'alphabetic'
-      }))
-      employee.getLastName_TextField().type(randomstring.generate({
+        charset: "alphabetic",
+      })
+    );
+    employee.getLastName_TextField().type(
+      randomstring.generate({
         length: 7,
-        charset: 'alphabetic'
-      }))
-      employee.getCity_TextField().type(randomstring.generate({
+        charset: "alphabetic",
+      })
+    );
+    employee.getCity_TextField().type(
+      randomstring.generate({
         length: 5,
-        charset: 'alphabetic'
-      }))
+        charset: "alphabetic",
+      })
+    );
   }
 
   saveEmployeNewRecord() {
@@ -36,12 +41,12 @@ class employeeActions {
     employee
       .getNewlyCreatedRecord()
       .invoke("text")
-      .then((text) => { 
-        var text1 = text.trim()
-        var text2 = text1.substring(0, text1.length -9)
-        var text3 = text2.replace(/\s+/g, ''); 
+      .then((text) => {
+        var text1 = text.trim();
+        var text2 = text1.substring(0, text1.length - 9);
+        var text3 = text2.replace(/\s+/g, "");
         cy.writeFile("cypress\\fixtures\\example.json", {
-          recordid: text3
+          recordid: text3,
         });
       });
   }
@@ -51,7 +56,6 @@ class employeeActions {
   }
 
   validateNewlyCreatedRecord() {
-
     cy.fixture("example.json").then(function (data) {
       this.data = data;
       cy.log(this.data.recordid);

@@ -2,11 +2,9 @@
 
 import loginElements from "../../pageObjects/loginPage";
 
-
 const login = new loginElements();
 
 class loginAction {
-
   launchURL() {
     cy.visit(Cypress.env("baseUrl"));
   }
@@ -18,13 +16,13 @@ class loginAction {
 
   validateButtons_LoginScreen() {
     login.getLoginButton().should("be.visible");
-    login.getLoginButton().should("be.disabled")
+    login.getLoginButton().should("be.disabled");
   }
 
-  validatePasswordBox(){
-    login.getPasswordTextBox().invoke('attr','type').should('eq','password')
-    login.getToggleEyeIcon().should('be.visible').click()
-    login.getPasswordTextBox().invoke('attr','type').should('eq','text')
+  validatePasswordBox() {
+    login.getPasswordTextBox().invoke("attr", "type").should("eq", "password");
+    login.getToggleEyeIcon().should("be.visible").click();
+    login.getPasswordTextBox().invoke("attr", "type").should("eq", "text");
   }
 
   validateHeaders_SubHeaders_LoginScreen() {
@@ -33,13 +31,15 @@ class loginAction {
   }
 
   enterCredentials() {
-    login.getUsernameTextBox().type(Cypress.env("username"))
-    login.getPasswordTextBox().type(Cypress.env("password"))
+    login.getUsernameTextBox().clear();
+    login.getPasswordTextBox().clear();
+    login.getUsernameTextBox().type(Cypress.env("username"));
+    login.getPasswordTextBox().type(Cypress.env("password"));
   }
 
   invalidCredentials() {
-    login.getUsernameTextBox().type("abc")
-    login.getPasswordTextBox().type("xyz")
+    login.getUsernameTextBox().type("abc");
+    login.getPasswordTextBox().type("xyz");
   }
 
   dashboardTitle() {
@@ -47,7 +47,7 @@ class loginAction {
   }
 
   currentUrl() {
-    cy.url().should("include", (Cypress.env("Dashboard")))
+    cy.url().should("include", Cypress.env("Dashboard"));
   }
 
   loginButton() {
@@ -55,7 +55,7 @@ class loginAction {
   }
 
   loginFailed() {
-    login.getLoginFailed().should("be.visible")
+    login.getLoginFailed().should("be.visible");
   }
 }
 

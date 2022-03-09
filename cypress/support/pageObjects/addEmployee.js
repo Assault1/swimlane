@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-const employeeSubmission = require("../../integration/locators/addEmployee.json");
+const employeeSubmission = require("../locators/addEmployee.json");
 class EmployeeSubmissionElements {
   getNewEmployeSubmission() {
     return cy

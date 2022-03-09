@@ -1,29 +1,23 @@
 // <reference types="cypress" />
 
-import UserTokenGenerateAPI from "../../pageAction/apiAction/userToken";
-import httpMethod from "../../pageAction/apiAction/httpMethod"
+import UserTokenGenerateAPI from "../../../support/pageAction/apiAction/userToken";
+import httpMethod from "../../../support/pageAction/apiAction/httpMethod";
 
 
-describe('API functionality', () => {
+describe("API functionality", () => {
+  it("Generate a new token", () => {
+    UserTokenGenerateAPI.generateToken();
+  });
 
-    it('Generate a new token', () => {
+  it("Create a new record using API", () => {
+    httpMethod.createNewRecordAPI("POST", 200);
+  });
 
-        UserTokenGenerateAPI.generateToken();
-    })
+  it("Retrieve new record using API", () => {
+    httpMethod.getNewRecordAPI("GET", 200);
+  });
 
-    it('Create a new record using API', () => {
-        
-        httpMethod.createNewRecordAPI("POST", 200)
-    })
-
-    it('Retrieve new record using API', () => {
-        
-        httpMethod.getNewRecordAPI("GET", 200)
-    })
-
-    it('Delete new record using API', () => {
-        
-        httpMethod.getNewRecordAPI("DELETE", 204)
-    })
-    
-  })
+  it("Delete new record using API", () => {
+    httpMethod.deleteNewRecordAPI("DELETE", 204);
+  });
+});

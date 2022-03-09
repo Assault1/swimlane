@@ -18,20 +18,20 @@ class loginPage {
     return cy.get(loginscreen.sign_Button);
   }
   getToggleEyeIcon() {
-    return cy.get(loginscreen.eyeIcon_loginScreen)
+    return cy.get(loginscreen.eyeIcon_loginScreen);
   }
   getLoginFailed() {
     return cy.contains(loginscreen.loginFailed_ErrorMessage);
   }
   getUrl() {
-      return cy.url()
+    return cy.url();
   }
   getUsernameTextBox() {
-      return cy.get('#input-1')
+    return cy.get(loginscreen.username);
   }
   getPasswordTextBox() {
-    return cy.get('#input-2')
-}
+    return cy.get(loginscreen.password);
+  }
 }
 
 export default loginPage;

@@ -1,28 +1,24 @@
 /// <reference types="cypress" />
 
-import loginActions from "../../pageAction/webAction/loginAction";
-import employeeActions from "../../pageAction/webAction/addEmployeeAction";
-
+import loginActions from "../../../support/pageAction/webAction/loginAction";
+import employeeActions from "../../../support/pageAction/webAction/addEmployeeAction";
 
 var login = new loginActions();
 var addEmp = new employeeActions();
 
-describe('Application Record and adding new employee functionality', () => {
+describe("New employee functionality", () => {
+  before(() => {
+    login.launchURL();
+    login.enterCredentials();
+    login.loginButton();
+  });
 
-
-
-
-    it('Adding a new employee', () => {
-
-        login.launchURL()
-        login.enterCredentials()
-        login.loginButton()
-        addEmp.click_NewEmployeeSubmission()
-        addEmp.addEmployeeRequiredField()
-        addEmp.saveEmployeNewRecord()
-        addEmp.confirmEmployeNewRecord()
-        addEmp.getNewRecord()
-        addEmp.validateNewlyCreatedRecord()
-    })
-    
-  })
+  it("Adding a new employee", () => {
+    addEmp.click_NewEmployeeSubmission();
+    addEmp.addEmployeeRequiredField();
+    addEmp.saveEmployeNewRecord();
+    addEmp.confirmEmployeNewRecord();
+    addEmp.getNewRecord();
+    addEmp.validateNewlyCreatedRecord();
+  });
+});
