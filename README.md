@@ -1,5 +1,5 @@
 # Swimlane Cypress Framework (Cypress + GitHub Actions)
-This cypress framework automatically attaches screenshots to failed test cases.
+
 ## Installation :
 
 1. Download this project and type below commands in the terminal: 
